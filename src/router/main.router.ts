@@ -11,13 +11,21 @@ const mainRouter: Router = Router();
 mainRouter.post('/', async (req: Request, res: Response) => {
 
     const body: EmailData = req.body;
-    console.log(body);
 
     if(!RequestValidator.validate(body)){
         res.status(400);
         res.send({
-            error: "invalid body"
+            info: "invalid body"
         });
+        return;
+    }
+
+    if(body.secret != env.APP.SECRET_KEY){
+        res.status(401);
+        res.send({
+            info: "Unauthorized, invalid token"
+        });
+        return;
     }
 
     const transporter: any = nodemailer.createTransport({

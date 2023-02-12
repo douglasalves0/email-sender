@@ -10,6 +10,7 @@ export default {
         SERVICE: e.EMAIL_SERVICE
     },
     APP: {
-        PORT: e.APP_PORT
+        PORT: e.APP_PORT,
+        SECRET_KEY: e.APP_SECRET_KEY
     }
 };

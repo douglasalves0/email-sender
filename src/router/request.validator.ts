@@ -7,6 +7,7 @@ export class RequestValidator{
         if(!data) return false;
         if(!(data?.to)) return false;
         if(!(data?.text)) return false;
+        if(!(data?.secret)) return false;
         if(!(data?.subject)) return false;
 
         return true;
