@@ -1,0 +1,5 @@
+EMAIL_USER = "douglas@outlook.com"
+EMAIL_PASSWORD = "12345"
+EMAIL_SERVICE = "hotmail"
+
+APP_PORT = 3000
