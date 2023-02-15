@@ -8,21 +8,21 @@ import env from "./../config/env";
 
 const mainRouter: Router = Router();
 
-mainRouter.post('/', async (req: Request, res: Response) => {
+mainRouter.post('/', async (request: Request, response: Response) => {
 
-    const body: EmailData = req.body;
+    const body: EmailData = request.body;
 
     if(!RequestValidator.validate(body)){
-        res.status(400);
-        res.send({
+        response.status(400);
+        response.send({
             info: "invalid body"
         });
         return;
     }
 
     if(body.secret != env.APP.SECRET_KEY){
-        res.status(401);
-        res.send({
+        response.status(401);
+        response.send({
             info: "Unauthorized, invalid token"
         });
         return;
@@ -54,8 +54,8 @@ mainRouter.post('/', async (req: Request, res: Response) => {
     }catch(e){
         Logger.error("Error trying to send email");
         console.log(e);
-        res.status(500);
-        res.send({
+        response.status(500);
+        response.send({
             info: "Tried to send the email but some error ocurred!"
         });
         return;
@@ -63,8 +63,8 @@ mainRouter.post('/', async (req: Request, res: Response) => {
 
     Logger.log("Email sent successfully!");
 
-    res.status(200);
-    res.send({
+    response.status(200);
+    response.send({
         info: "Email sent successfully!",
         data: body    
     });
